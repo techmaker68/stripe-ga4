@@ -14,4 +14,6 @@ class PlansController extends Controller
         $plans = Plan::all();
         return view('dashboard', compact('plans'));
     }
+
+    
 }

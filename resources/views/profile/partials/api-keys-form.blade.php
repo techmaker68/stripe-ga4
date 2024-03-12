@@ -19,7 +19,7 @@
         @csrf
         @method('patch')
 
-        <div>
+        <!-- <div>
             <x-input-label for="Stripe key" :value="__('Stripe key')" />
             <x-text-input id="Stripe key" name="stripe_key" type="text" class="mt-1 block w-full" :value="old('name', $keys->stripe_key)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('stripe_key')" />
@@ -29,7 +29,7 @@
             <x-input-label for="Stripe Secret" :value="__('Stripe Secret')" />
             <x-text-input id="Stripe Secret" name="stripe_secret" type="text" class="mt-1 block w-full" :value="old('name', $keys->stripe_secret)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('stripe_secret')" />
-        </div>
+        </div> -->
 
         <div>
             <x-input-label for="Stripe Webhook Secret" :value="__('Stripe Webhook Secret')" />

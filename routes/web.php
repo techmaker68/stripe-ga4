@@ -8,6 +8,9 @@ use App\Http\Controllers\UserApiKeyController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\UserApiKey;
+use Illuminate\Http\Request;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +26,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/oauth2/authorize', function (Request $request) {
+    return view('welcome');
+});
+
 Route::get('/dashboard', [PlansController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/oauth2/authorize', [ProfileController::class, 'verify']);
 
 Route::get('/payment', 'StripeController@stripe')->name('payment.form');
 // Route::post('/process-payment', 'StripeController@processPayment')->name('process.payment');
@@ -41,17 +49,13 @@ Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleInvoicePa
 // Route::post('/webhook/stripe', 'StripeWebhookController@handleWebhook')->name('stripe.webhook')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 Route::middleware('auth')->group(function () {
-
-
     Route::get('stripe', [StripeController::class, 'stripe']);
     Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post');
-
     Route::get('/settings', [UserApiKeyController::class, 'edit'])->name('settings.edit');
     Route::post('/settings', [UserApiKeyController::class, 'update'])->name('settings.update');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
     Route::patch('/key', [UserApiKeyController::class, 'update'])->name('keys.update');
 });
 

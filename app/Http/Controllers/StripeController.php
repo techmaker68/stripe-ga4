@@ -21,10 +21,6 @@ class StripeController extends Controller
 
     public function processPayment(Request $request)
     {
-
-
-
-
         Stripe::setApiKey(config('services.stripe.secret'));
         try {
             $charge =  Charge::create([
