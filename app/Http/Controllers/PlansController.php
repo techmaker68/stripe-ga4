@@ -10,7 +10,6 @@ class PlansController extends Controller
 {
     public function index()
     {
-
         $plans = Plan::all();
         return view('dashboard', compact('plans'));
     }

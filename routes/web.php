@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleAnalyticsController;
 use App\Http\Controllers\PlansController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StripeController;
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::patch('/key', [UserApiKeyController::class, 'update'])->name('keys.update');
+
+    Route::get('/google/login', [GoogleAnalyticsController::class, 'redirectToGoogleProvider']);
+    Route::get('/google/callback', [GoogleAnalyticsController::class, 'handleProviderGoogleCallback']);
 });
 
 require __DIR__ . '/auth.php';
